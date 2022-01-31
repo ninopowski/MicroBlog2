@@ -7,12 +7,11 @@ client = MongoClient("mongodb+srv://ninopowski:nnikojdrug@newcluster.xdhrr.mongo
 app.db = client.db1
 
 
-entries = []
+#entries = []
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    print([e for e in app.db.MicroBlog.find({})])
-    posts = entries
+    posts = app.db.MicroBlog.find({})
     if request.method == "POST":
         title = request.form["title"]
         text = request.form["field"]
@@ -22,7 +21,8 @@ def home():
             "text": text,
             "date": date
         }
-        entries.append(new_entry)
+        #entries.append(new_entry)
+        app.db.MicroBlog.insert_one(new_entry)
         return redirect(url_for('home'))
     return render_template("index.html", posts=posts)
 
