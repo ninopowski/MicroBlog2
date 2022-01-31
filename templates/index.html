@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>MicroBlog</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar__brand">
+            <img class="logo" src="static/images/scull-and-bones.jpg" alt="logo-pic"> MicroBlog
+        </div>
+        <ul class="navbar__navigation">
+            <li class="navbar__navigation-item">
+                <a class="navbar__link" href="#">Recent posts</a>
+            </li>
+            <li class="navbar__navigation-item">
+                <a class="navbar__link" href="#">Calendar</a>
+            </li>
+        </ul>
+
+
+    </header>
+
+    <main class="main">
+        <section>
+            <h1>Add new entry</h1>
+            <form class="form" method="POST">
+                <label class="form__label" for="title">Title</label>
+                <input class="form__input" type="text" name="title" id="title">
+                <label class="form__label" for="field">Entry</label>
+                <textarea class="form__textarea" type="text" name="field" id="field"> </textarea>
+                <button class="form__submit" type="submit">Add</button>
+            </form>
+        </section>
+
+        <section>
+            <h1 class="recent__heading">Recent posts</h1>
+
+            <article class="entry">
+                {% for post in posts %}
+                <div>
+                    <h2 class="entry__title"> {{ post["title"] }}</h2>
+                    <time class="entry__date"> {{ post["date"] }} </time>
+                </div>
+                <p class="entry__content"> {{ post["text"] }}</p>
+                {% endfor %}
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <section class="left">
+                <a class="footer__item" href="#"> Made by Nino</a>
+                <a class="footer__item" href="#"> Other projects</a>
+            </section>
+
+            <section class="right">
+                <a class="footer__item" href="#"> About</a>
+                <a class="footer__item" href="#"> How this was made.</a>
+            </section>
+        </div>
+    </footer>
+
+</body>
+</html>
